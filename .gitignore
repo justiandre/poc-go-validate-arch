@@ -1,0 +1,60 @@
+### Go ###
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+### Go Patch ###
+# this line was commenting because now we need to commit the vendor folder due to changes in ci / cd made by the fury team
+#vendor/
+Godeps/
+
+### Intellij ###
+.idea
+
+### Vim ###
+# Swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+# Persistent undo
+[._]*.un~
+
+### VisualStudioCode ###
+.vscode
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+# InteliJ/Goland
+.idea/
+
+# Binaries
+/fury_anger
+/debug
+/main
+.DS_Store
+
+# Code Quality Service
+python3
+staticcheck.conf

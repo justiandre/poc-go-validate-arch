@@ -1,0 +1,77 @@
+definitions:
+  domainPackages: &domainPackages
+    - ".*entrypoint.*"
+    - ".*usecase.*"
+    - ".*service.*"
+    - ".*repository.*"
+  databasePackages: &databasePackages
+    - ".*bigquery.*"
+    - ".*cache.*"
+    - ".*gorm.*"
+    - ".*kvs.*"
+    - ".*mysql.*"
+    - ".*postgres.*"
+    - ".*sql.*"
+  webPackages: &webPackages
+    - ".*api.*"
+    - ".*chi.*"
+    - ".*gin.*"
+    - ".*gorilla.*"
+    - ".*grpc.*"
+    - ".*header.*"
+    - ".*http.*"
+    - ".*json.*"
+    - ".*jwt.*"
+    - ".*mux.*"
+    - ".*protobuf.*"
+    - ".*querystring.*"
+    - ".*websocket.*"
+  externalFontsPackages: &externalFontsPackages
+    - ".*bigquery.*"
+    - ".*cache.*"
+    - ".*gorm.*"
+    - ".*kvs.*"
+    - ".*mysql.*"
+    - ".*postgres.*"
+    - ".*sql.*"
+    - ".*api.*"
+    - ".*chi.*"
+    - ".*gin.*"
+    - ".*gorilla.*"
+    - ".*grpc.*"
+    - ".*header.*"
+    - ".*http.*"
+    - ".*json.*"
+    - ".*jwt.*"
+    - ".*mux.*"
+    - ".*protobuf.*"
+    - ".*querystring.*"
+    - ".*websocket.*"
+dependenciesRules:
+  - package: ".*infra.*"
+    shouldNotDependsOn:
+      *domainPackages
+  - package: ".*entrypoint.*"
+    shouldNotDependsOn:
+      *domainPackages
+    shouldNotDependsOnExternal:
+      *databasePackages
+  - package: ".*usecase.*"
+    shouldNotDependsOn:
+      *domainPackages
+    shouldNotDependsOnExternal:
+      *externalFontsPackages
+  - package: ".*service.*"
+    shouldNotDependsOn:
+      *domainPackages
+    shouldNotDependsOnExternal:
+      *externalFontsPackages
+  - package: ".*repository.*"
+    shouldNotDependsOn:
+      *domainPackages
+  - package: ".*repository.*http.*"
+    shouldNotDependsOnExternal:
+      *databasePackages
+  - package: ".*repository.*sql.*"
+    shouldNotDependsOnExternal:
+      *webPackages

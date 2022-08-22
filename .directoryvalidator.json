@@ -1,0 +1,195 @@
+{
+  "ignoreFiles": [
+    ".*",
+    "go.mod",
+    "go.sum",
+    "main.go",
+    "pkg/.DS_Store",
+    "Dockerfile.internal-tools",
+    "README.md",
+    "Makefile",
+    "arch-go.yml"
+  ],
+  "ignoreDirs": [
+    ".*"
+  ],
+  "commonRules": {
+    "rule_mocks": {
+      "type": "directory",
+      "name": "mocks",
+      "isOptional": true,
+      "rules": [
+        {
+          "type": "file",
+          "name": "/.*/"
+        }
+      ]
+    }
+  },
+  "rules": [
+    {
+      "type": "directory",
+      "name": "pkg",
+      "isOptional": false,
+      "isRecursive": true,
+      "rules": [
+        {
+          "type": "directory",
+          "name": "infra",
+          "isOptional": true,
+          "isRecursive": true,
+          "rules": [
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "domain",
+          "isOptional": false,
+          "isRecursive": true,
+          "rules": [
+            {
+              "type": "directory",
+              "name": "/.*/",
+              "isOptional": false,
+              "rules": [
+                {
+                  "type": "file",
+                  "name": "entity.go",
+                  "isOptional": true
+                },
+                {
+                  "type": "file",
+                  "name": "entity_test.go",
+                  "isOptional": true
+                },
+                {
+                  "type": "directory",
+                  "name": "entrypoint",
+                  "isOptional": true,
+                  "rules": [
+                    {
+                      "type": "directory",
+                      "name": "rest",
+                      "isOptional": true,
+                      "rules": [
+                        {
+                          "type": "file",
+                          "name": "rest.go",
+                          "isOptional": false
+                        },
+                        {
+                          "type": "file",
+                          "name": "rest_test.go",
+                          "isOptional": false
+                        },
+                        {
+                          "type": "common",
+                          "key": "rule_mocks"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "directory",
+                  "name": "usecase",
+                  "isOptional": true,
+                  "rules": [
+                    {
+                      "type": "file",
+                      "name": "/.*/",
+                      "isOptional": false
+                    },
+                    {
+                      "type": "file",
+                      "name": "/.*_test.*/",
+                      "isOptional": false
+                    },
+                    {
+                      "type": "common",
+                      "key": "rule_mocks"
+                    }
+                  ]
+                },
+                {
+                  "type": "directory",
+                  "name": "service",
+                  "isOptional": false,
+                  "rules": [
+                    {
+                      "type": "file",
+                      "name": "service.go",
+                      "isOptional": false
+                    },
+                    {
+                      "type": "file",
+                      "name": "service_test.go",
+                      "isOptional": false
+                    },
+                    {
+                      "type": "common",
+                      "key": "rule_mocks"
+                    }
+                  ]
+                },
+                {
+                  "type": "directory",
+                  "name": "repository",
+                  "isOptional": true,
+                  "rules": [
+                    {
+                      "type": "directory",
+                      "name": "http",
+                      "isOptional": true,
+                      "rules": [
+                        {
+                          "type": "file",
+                          "name": "http.go",
+                          "isOptional": false
+                        },
+                        {
+                          "type": "file",
+                          "name": "http_test.go",
+                          "isOptional": false
+                        },
+                        {
+                          "type": "common",
+                          "key": "rule_mocks"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "directory",
+                      "name": "sql",
+                      "isOptional": true,
+                      "rules": [
+                        {
+                          "type": "file",
+                          "name": "sql.go",
+                          "isOptional": false
+                        },
+                        {
+                          "type": "file",
+                          "name": "sql_test.go",
+                          "isOptional": false
+                        },
+                        {
+                          "type": "common",
+                          "key": "rule_mocks"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "common",
+                  "key": "rule_mocks"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
